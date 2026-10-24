@@ -20,6 +20,23 @@
 # ============================================================
 # 定义常用机型模板，可以直接在模板中指定包名列表
 
+[templates.pixel_6a]
+packages = [
+    "com.google.android.gms",
+    "com.google.android.gsf",
+    "com.google.android.gms.unstable",
+    "ru.andr7e.deviceinfohw",
+]
+manufacturer = "Google"
+brand = "google"
+model = "Pixel 6a"
+device = "bluejay_beta"
+product = "bluejay"
+fingerprint = "google/bluejay_beta/bluejay:CANARY/ZP11.260918.007/16484274:user/release-keys"
+build_id = "ZP11.260918.007"
+security_patch = "2026-10-05"
+device_initial_sdk_int = 32
+
 [templates.redmagic_11_pro]
 packages = [
     "com.mobilelegends.mi",
