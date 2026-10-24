@@ -98,6 +98,14 @@
         />
       </el-form-item>
 
+      <el-form-item :label="t('templates.fields.device_initial_sdk_int')">
+        <el-input
+          v-model="formData.device_initial_sdk_int"
+          type="number"
+          :placeholder="t('templates.placeholders.device_initial_sdk_int')"
+        />
+      </el-form-item>
+
       <el-form-item :label="t('templates.fields.dpi')">
         <el-input
           v-model="formData.dpi"

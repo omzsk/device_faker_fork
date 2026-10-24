@@ -30,47 +30,15 @@ packages = [
 manufacturer = "Google"
 brand = "google"
 model = "Pixel 6a"
-device = "bluejay_beta"
+device = "bluejay"
+product = "bluejay_beta"
 product = "bluejay"
 fingerprint = "google/bluejay_beta/bluejay:CANARY/ZP11.260918.007/16484274:user/release-keys"
 build_id = "ZP11.260918.007"
 security_patch = "2026-10-05"
+sdk_int = 30
 device_initial_sdk_int = 32
-
-[templates.redmagic_11_pro]
-packages = [
-    "com.mobilelegends.mi",
-    "com.supercell.brawlstars",
-    "com.blizzard.diablo.immortal",
-    "com.netease.newspike",
-    "com.activision.callofduty.warzone",
-]
-manufacturer = "Nubia"
-brand = "REDMAGIC"
-model = "NX809J"
-device = "REDMAGIC 11 PRO"
-product = "NX809J"
-fingerprint = "REDMAGIC/NX809J-UN/NX809J:16/BP2A.250605.031.A3/20251017.000000:user/release-keys"
-build_id = "BP2A.250605.031.A3"
-
-[templates]
-[templates."一加15"]
-manufacturer = "OnePlus"
-brand = "OnePlus"
-model = "PLK110"
-device = "PLK110"
-product = "PLK110"
-fingerprint = ""
-packages = [ "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.supercell.clashofclans", "com.tencent.tmgp.speedmobile" ]
-
-[templates.IQOO15]
-manufacturer = "VIVO"
-brand = "VIVO"
-model = "V2505A"
-device = "V2505A"
-product = "V2505A"
-fingerprint = ""
-packages = [ "com.tencent.tmgp.sgame", "com.tencent.tmgp.codev" ]
+companion_resetprop = true
 
 # ============================================================
 # 应用配置
