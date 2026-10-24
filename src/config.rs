@@ -349,6 +349,8 @@ pub struct DeviceTemplate {
     /// SDK 版本伪装（如 35, 34）；`"__DELETE__"` 删除 `ro.build.version.sdk` 整族
     #[serde(default)]
     pub sdk_int: Option<NumberSetting>,
+    #[serde(default)]
+    pub device_initial_sdk_int: Option<NumberSetting>,
     /// 临时覆盖系统显示密度（120–640），由 companion 使用 `wm density` 应用
     #[serde(default)]
     pub dpi: Option<u32>,
