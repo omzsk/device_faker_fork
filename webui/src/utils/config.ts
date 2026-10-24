@@ -132,6 +132,9 @@ function normalizeDeviceInfoFields(source: UnknownRecord): Partial<DeviceInfo> {
   const sdkInt = asOptionalNumericSetting(source.sdk_int)
   if (sdkInt !== undefined) normalized.sdk_int = sdkInt
 
+  const deviceInitialSdkInt = asOptionalNumericSetting(source.device_initial_sdk_int)
+  if (deviceInitialSdkInt !== undefined) normalized.device_initial_sdk_int = deviceInitialSdkInt
+
   const dpi = asOptionalInteger(source.dpi)
   if (dpi !== undefined && dpi >= 120 && dpi <= 640) normalized.dpi = dpi
 

@@ -23,6 +23,8 @@ const PROBE_KEYS: &[&str] = &[
     "ro.product.model",
     "ro.hardware",
     "ro.build.version.sdk",
+    "ro.board.first_api_level",
+    "ro.product.first_api_level",
 ];
 
 // ── /proc/self/maps ──────────────────────────────────────────────────────────

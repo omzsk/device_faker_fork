@@ -27,6 +27,7 @@ export interface DeviceFakerFormData {
   security_patch: string
   android_version: string
   sdk_int: string
+  device_initial_sdk_int: string
   dpi: string
   characteristics: string
   force_denylist_unmount: boolean | undefined
@@ -74,6 +75,7 @@ function createEmptyFormData(): DeviceFakerFormData {
     security_patch: '',
     android_version: '',
     sdk_int: '',
+    device_initial_sdk_int: '',
     dpi: '',
     characteristics: '',
     force_denylist_unmount: undefined,
@@ -136,6 +138,17 @@ export function formDataToTemplate(formData: DeviceFakerFormData, base?: Templat
     }
   } else {
     delete template.sdk_int
+  }
+
+  if (formData.device_initial_sdk_int) {
+    const deviceInitialSdkInt = Number(formData.device_initial_sdk_int)
+    if (!isNaN(deviceInitialSdkInt)) {
+      template.device_initial_sdk_int = deviceInitialSdkInt
+    } else {
+      delete template.device_initial_sdk_int
+    }
+  } else {
+    delete template.device_initial_sdk_int
   }
 
   if (formData.dpi) {
@@ -209,6 +222,7 @@ export function templateToFormData(template: Template): DeviceFakerFormData {
     security_patch: template.security_patch || '',
     android_version: template.android_version || '',
     sdk_int: template.sdk_int ? String(template.sdk_int) : '',
+    device_initial_sdk_int: template.device_initial_sdk_int ? String(template.device_initial_sdk_int) : '',
     dpi: template.dpi ? String(template.dpi) : '',
     characteristics: template.characteristics || '',
     force_denylist_unmount: template.force_denylist_unmount,
@@ -237,6 +251,7 @@ export function appConfigToFormData(appConfig: AppConfig): DeviceFakerFormData {
     security_patch: appConfig.security_patch || '',
     android_version: appConfig.android_version || '',
     sdk_int: appConfig.sdk_int ? String(appConfig.sdk_int) : '',
+    device_initial_sdk_int: appConfig.device_initial_sdk_int ? String(appConfig.device_initial_sdk_int) : '',
     dpi: appConfig.dpi ? String(appConfig.dpi) : '',
     characteristics: appConfig.characteristics || '',
     force_denylist_unmount: appConfig.force_denylist_unmount,
@@ -266,6 +281,7 @@ export function formDataToAppConfig(formData: DeviceFakerFormData, packageName: 
     security_patch: formData.security_patch,
     android_version: formData.android_version,
     sdk_int: formData.sdk_int ? Number(formData.sdk_int) : undefined,
+    device_initial_sdk_int: formData.device_initial_sdk_int ? Number(formData.device_initial_sdk_int) : undefined,
     dpi:
       formData.dpi &&
       Number.isInteger(Number(formData.dpi)) &&

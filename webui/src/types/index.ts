@@ -35,6 +35,7 @@ export interface DeviceInfo {
   characteristics?: string
   android_version?: string
   sdk_int?: NumericSetting
+  device_initial_sdk_int?: NumericSetting
   dpi?: number
   custom_props?: CustomProps
   force_denylist_unmount?: boolean

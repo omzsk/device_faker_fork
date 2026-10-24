@@ -413,6 +413,9 @@ pub struct AppConfig {
     /// SDK 版本伪装（如 35, 34）；`"__DELETE__"` 删除 `ro.build.version.sdk` 整族
     #[serde(default)]
     pub sdk_int: Option<NumberSetting>,
+    // ro.product.first_api_level -- ro.board.first_api_level - 32
+    #[serde(default)]
+    pub device_initial_sdk_int: Option<NumberSetting>,
     /// 临时覆盖系统显示密度（120–640），由 companion 使用 `wm density` 应用
     #[serde(default)]
     pub dpi: Option<u32>,
@@ -511,6 +514,7 @@ impl Config {
                 characteristics: app.characteristics.clone(),
                 android_version: app.android_version.clone(),
                 sdk_int: app.sdk_int,
+                device_initial_sdk_int: app.device_initial_sdk_int,
                 dpi: valid_dpi(app.dpi),
                 custom_props: app.custom_props.clone(),
                 force_denylist_unmount: app
@@ -548,6 +552,7 @@ impl Config {
                 characteristics: template.characteristics.clone(),
                 android_version: template.android_version.clone(),
                 sdk_int: template.sdk_int,
+                device_initial_sdk_int: template.device_initial_sdk_int,
                 dpi: valid_dpi(template.dpi),
                 custom_props: template.custom_props.clone(),
                 force_denylist_unmount: template
@@ -677,6 +682,11 @@ impl Config {
             insert_build_family(&mut map, "version.sdk", &sdk_int.to_string());
         }
 
+        if let Some(device_initial_sdk_int) = merged.device_initial_sdk_int.and_then(NumberSetting::value) {
+            map.insert("ro.board.first_api_level".to_string(), "32".to_string());
+            map.insert("ro.product.first_api_level".to_string(), device_initial_sdk_int.to_string());
+        }
+
         // 自定义属性：已知属性族先整族展开，精确 key 随后覆盖（优先级最高）
         if let Some(custom_props) = &merged.custom_props {
             for (key, value) in custom_props {
@@ -797,6 +807,11 @@ impl Config {
             delete_build_family(&mut delete_props, "version.sdk");
         }
 
+        if merged.device_initial_sdk_int.is_some_and(NumberSetting::is_delete) {
+            delete_props.push("ro.board.first_api_level".to_string());
+            delete_props.push("ro.product.first_api_level".to_string());
+        }
+
         if let Some(custom_props) = &merged.custom_props {
             for (key, value) in custom_props {
                 if value == "__DELETE__" {
@@ -833,6 +848,7 @@ pub struct MergedAppConfig {
     pub characteristics: Option<String>,
     pub android_version: Option<String>,
     pub sdk_int: Option<NumberSetting>,
+    pub device_initial_sdk_int: Option<NumberSetting>,
     /// 最终显示密度覆盖值，超出 120–640 的配置会被忽略
     pub dpi: Option<u32>,
     pub custom_props: Option<HashMap<String, String>>,

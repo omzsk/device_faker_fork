@@ -24,6 +24,7 @@ const TEMPLATE_SIGNAL_KEYS = [
   'characteristics',
   'android_version',
   'sdk_int',
+  'device_initial_sdk_int',
   'custom_props',
 ]
 
